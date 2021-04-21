@@ -16,7 +16,7 @@
     </style>
 
     <script>
-      require(["esri/config","esri/Map", "esri/views/MapView", "esri/widgets/Locate", "esri/widgets/Home"], function (esriConfig,Map, MapView, Locate, Home) {
+      require(["esri/config","esri/Map", "esri/views/MapView", "esri/widgets/Locate", "esri/widgets/Home", "esri/widgets/DistanceMeasurement2D", "esri/widgets/Fullscreen"], function (esriConfig,Map, MapView, Locate, Home, DistanceMeasurement2D, Fullscreen) {
 
         esriConfig.apiKey = "YOUR-API-KEY";
 
@@ -44,8 +44,17 @@
           view: view
         });
 
+        var measurementWidget = new DistanceMeasurement2D({
+            view: view
+        });
+        fullscreen = new Fullscreen({
+            view: view
+        });
+
+        view.ui.add(measurementWidget, "top-right");
         view.ui.add(locate, "top-left");
         view.ui.add(homeWidget, "top-right");
+        view.ui.add(fullscreen, "bottom-right");
 
       });
     </script>
